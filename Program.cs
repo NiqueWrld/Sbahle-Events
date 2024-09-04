@@ -39,9 +39,9 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
-using(var scope = app.Services.CreateScope())
+using (var scope = app.Services.CreateScope())
 {
-    var roleManager = 
+    var roleManager =
         scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
     var roles = new[] { "Admin", "Manager", "User" };
@@ -50,7 +50,7 @@ using(var scope = app.Services.CreateScope())
     {
         if (!await roleManager.RoleExistsAsync(role))
             await roleManager.CreateAsync(new IdentityRole(role));
-    
+
     }
 }
 
@@ -62,7 +62,7 @@ using (var scope = app.Services.CreateScope())
     string email = "admin@admin.com";
     string password = "Test123@";
 
-    if(await userManager.FindByEmailAsync(email) == null)
+    if (await userManager.FindByEmailAsync(email) == null)
     {
         var user = new Sbahle_EventsUser();
         user.UserName = email;
